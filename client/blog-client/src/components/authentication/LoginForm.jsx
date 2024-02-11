@@ -9,7 +9,7 @@ const LoginForm = ({ displayMode }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/users/log-in", {
+      await fetch("http://localhost:3000/users/log-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,16 +17,12 @@ const LoginForm = ({ displayMode }) => {
         body: JSON.stringify(data),
         credentials: "include",
       });
-      if (response.ok) {
-        setSuccess(true);
-        methods.reset();
-      } else {
-        setSuccess(false);
-      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
+    setSuccess(true);
     methods.reset();
+    window.location.href = "/homepage";
   });
 
   return (

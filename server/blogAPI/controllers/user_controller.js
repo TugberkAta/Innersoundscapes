@@ -84,27 +84,26 @@ exports.sign_in_post = [
 
     if (!errors.isEmpty()) {
       console.log("error");
-      res.redirect("http://localhost:5173/log-in");
       return;
     }
     try {
       passport.authenticate("local", (err, user, info) => {
         if (err) {
           console.error("Authentication error:", err);
-          return next(err);
+          return 0;
         }
         if (!user) {
           console.log("Authentication failed:", info.message);
-          return res.redirect("http://localhost:5173/log-in");
+          return res.send("");
         }
         // Log successful authentication
         console.log("User authenticated successfully:", user.username);
         req.logIn(user, (err) => {
           if (err) {
             console.error("Error logging in user:", err);
-            return next(err);
+            return 0;
           }
-          res.redirect("http://localhost:5173/homepage");
+          res.send("");
         });
         console.log(req.user);
         console.log(req.isAuthenticated());

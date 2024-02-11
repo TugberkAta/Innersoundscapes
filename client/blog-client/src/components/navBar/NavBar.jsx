@@ -1,6 +1,14 @@
+import NavBarLinks from "./NavBarLinks";
+import NavBarSocial from "./NavBarSocial";
+// React icons
 import { GiSoundWaves } from "react-icons/gi";
 import { BsWrenchAdjustableCircle } from "react-icons/bs";
-import NavBarLinks from "../NavBarLinks";
+import {
+  FaXTwitter,
+  FaYoutube,
+  FaInstagram,
+  FaFacebook,
+} from "react-icons/fa6";
 
 const NavBar = () => {
   return (
@@ -26,13 +34,25 @@ const NavBar = () => {
             ></NavBarLinks>
             <NavBarLinks
               linkAddress="http://localhost:5173/homepage"
+              linkName="Punk"
+            ></NavBarLinks>
+            <NavBarLinks
+              linkAddress="http://localhost:5173/homepage"
               linkName="Turkish Scene"
             ></NavBarLinks>
           </div>
         </div>
-        <a href="http://localhost:5173/log-in">
-          <BsWrenchAdjustableCircle color="white" size={24} className="mr-8" />
-        </a>
+        <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4">
+            <NavBarSocial SocialLogo={FaInstagram}></NavBarSocial>
+            <NavBarSocial SocialLogo={FaFacebook}></NavBarSocial>
+            <NavBarSocial SocialLogo={FaXTwitter}></NavBarSocial>
+            <NavBarSocial SocialLogo={FaYoutube}></NavBarSocial>
+          </div>
+          <a href="http://localhost:5173/log-in">
+            <BsWrenchAdjustableCircle color="white" className="mr-8 size-6 " />
+          </a>
+        </div>
       </div>
     </>
   );
