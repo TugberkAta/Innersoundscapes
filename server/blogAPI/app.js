@@ -53,7 +53,20 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.use(cors());
+var whitelist = ["http://localhost:5173", "http://127.0.0.1:5173"];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

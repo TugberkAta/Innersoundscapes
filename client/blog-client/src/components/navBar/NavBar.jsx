@@ -1,5 +1,6 @@
 import NavBarLinks from "./NavBarLinks";
 import NavBarSocial from "./NavBarSocial";
+import PropTypes from "prop-types";
 // React icons
 import { GiSoundWaves } from "react-icons/gi";
 import { BsWrenchAdjustableCircle } from "react-icons/bs";
@@ -10,15 +11,18 @@ import {
   FaFacebook,
 } from "react-icons/fa6";
 
-const NavBar = () => {
+const NavBar = ({ userData }) => {
+  console.log(userData);
   return (
     <>
       <div className="h-16 bg-black flex items-center justify-between">
         <div className="flex items-center ">
-          <p className="text-white flex items-center gap-4 ml-6 text-pretty font-montserrat font-thin">
-            Inner Soundscapes
+          <div className="text-white flex items-center ml-6 gap-4 text-pretty font-montserrat font-thin">
+            <p>
+              Inner<span className="text-purple-400">Soundscapes</span>
+            </p>
             <GiSoundWaves color="white" size={32} />
-          </p>
+          </div>
           <div className="flex gap-4 ml-11 font-mono text-sm font-bold">
             <NavBarLinks
               linkAddress="http://localhost:5173/homepage"
@@ -43,6 +47,16 @@ const NavBar = () => {
           </div>
         </div>
         <div className="flex items-center gap-8">
+          {userData ? (
+            <a
+              href="/create-article"
+              className="text-white  font-mono text-sm font-bold p-2 border-2 rounded-sm hover:scale-105 transition-all"
+            >
+              Create an article
+            </a>
+          ) : (
+            <></>
+          )}
           <div className="flex items-center gap-4">
             <NavBarSocial SocialLogo={FaInstagram}></NavBarSocial>
             <NavBarSocial SocialLogo={FaFacebook}></NavBarSocial>
@@ -56,6 +70,10 @@ const NavBar = () => {
       </div>
     </>
   );
+};
+
+NavBar.propTypes = {
+  userData: PropTypes.array.isRequired,
 };
 
 export default NavBar;

@@ -122,6 +122,5 @@ exports.user_info_all_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.user_info_current_get = asyncHandler(async (req, res, next) => {
-  console.log(req.user);
   res.send(req.user);
 });
