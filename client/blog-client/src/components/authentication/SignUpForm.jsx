@@ -26,6 +26,7 @@ const SignUpForm = ({ displayMode }) => {
       console.error("Error submitting form:", error);
     }
     methods.reset();
+    window.location.href = "/log-in";
   });
 
   return (

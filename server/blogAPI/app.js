@@ -14,6 +14,7 @@ const User = require("./models/user");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var articleRouter = require("./routes/article");
 
 const mongoDb = process.env.MONGO_URL;
 mongoose.connect(mongoDb);
@@ -53,10 +54,17 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-var whitelist = ["http://localhost:5173", "http://127.0.0.1:5173"];
+var whitelist = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "http://localhost:3000",
+  "http://localhost:5173/homepage",
+  "http://localhost:3000/users/info",
+  "http://localhost:3000/users/current",
+];
 var corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whitelist.indexOf(origin) !== -1 || origin === undefined) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -77,6 +85,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger("dev"));
@@ -85,6 +97,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/article", articleRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

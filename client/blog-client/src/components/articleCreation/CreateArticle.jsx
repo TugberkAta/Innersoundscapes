@@ -4,7 +4,7 @@ import { useState } from "react";
 import InputUserPredetermined from "./InputPredetermined";
 import TextAreaArticle from "./TextAreaArticle";
 import InputHeader from "./InputHeader";
-import InputImage from "./InputImage";
+import InputDefault from "./InputDefault";
 
 const CreateArticle = ({ displayMode, userData }) => {
   const methods = useForm();
@@ -12,18 +12,25 @@ const CreateArticle = ({ displayMode, userData }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      await fetch("http://localhost:3000/users/create-article", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        credentials: "include",
-      });
+      const response = await fetch(
+        "http://localhost:3000/article/create-article",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.ok) {
+        setSuccess(true);
+        methods.reset();
+      } else {
+        setSuccess(false);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
-    setSuccess(true);
     methods.reset();
     window.location.href = "/homepage";
   });
@@ -38,7 +45,10 @@ const CreateArticle = ({ displayMode, userData }) => {
     >
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
-          <div className="flex flex-col justify-center gap-6 shadow-md px-24 py-12  rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100">
+          <div className="flex flex-col justify-center gap-6 shadow-md px-24 py-12 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100">
+            <h1 className="flex justify-center text-2xl font-semibold">
+              CREATE ARTICLE
+            </h1>
             <div className="flex gap-2 items-center w-96">
               <InputUserPredetermined
                 id="firstName"
@@ -63,37 +73,42 @@ const CreateArticle = ({ displayMode, userData }) => {
               placeholder="Header..."
               labelText="Header"
               setSuccess={setSuccess}
-            ></InputHeader>
-
-            <div>
-              {" "}
-              <TextAreaArticle
-                id="mainBody"
-                labelText="Body"
-                setSuccess={setSuccess}
-              ></TextAreaArticle>
-            </div>
-            <InputImage
-              id="articlePicture"
-              placeholder="Photo..."
-              labelText="Upload Picture"
+            ></InputHeader>{" "}
+            <TextAreaArticle
+              id="mainBody"
+              labelText="Body"
               setSuccess={setSuccess}
-            ></InputImage>
-
-            <div className="flex justify-center w-56">
-              {success && (
-                <p className="flex font-semibold text-green-500">
-                  Log in was successful
-                </p>
-              )}
-              {!success && <></>}
+            ></TextAreaArticle>
+            <div className="flex flex-col gap-3 items-center ">
+              <InputDefault
+                id="imgUrl"
+                type="input"
+                placeholder="Url..."
+                labelText="Image Url"
+                setSuccess={setSuccess}
+              ></InputDefault>
+              <InputDefault
+                id="imgAlt"
+                type="input"
+                placeholder="Description..."
+                labelText="Image Description"
+                setSuccess={setSuccess}
+              ></InputDefault>
+              <div className="flex justify-center w-56">
+                {success && (
+                  <p className="font-semibold text-green-500">
+                    Post sent successfully
+                  </p>
+                )}
+                {!success && <></>}
+              </div>
+              <button
+                className=" w-10/12 p-2 bg-blue-500 text-white rounded-sm"
+                onClick={onSubmit}
+              >
+                Submit
+              </button>
             </div>
-            <button
-              className=" p-2 bg-blue-500 text-white rounded-sm"
-              onClick={onSubmit}
-            >
-              Submit
-            </button>
           </div>
         </form>
       </FormProvider>

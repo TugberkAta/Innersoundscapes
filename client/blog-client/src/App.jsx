@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import SignUpForm from "./components/authentication/SignUpForm";
 import DarkModeSwitch from "./components/utilities/DarkModeSwitch";
 import { useEffect, useState } from "react";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 import LoginForm from "./components/authentication/LoginForm";
 import CreateArticle from "./components/articleCreation/CreateArticle";
 
@@ -93,8 +93,8 @@ function App() {
                 <div
                   className={`w-full flex flex-col items-center justify-around bg-no-repeat bg-center bg-cover md:h-screen h-full ${
                     displayMode
-                      ? "bg-[url('src/assets/stacked-waves-haikei-2.svg')]"
-                      : "bg-[url('src/assets/stacked-waves-image-3.svg')]"
+                      ? "bg-[url('client/blog-client/src/assets/stacked-waves-haikei-2.svg')]"
+                      : "bg-[url('client/blog-client/src/assets/stacked-waves-haikei-3.svg')]"
                   }`}
                 ></div>
               ) : (

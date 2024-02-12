@@ -6,7 +6,7 @@ import { isFormInvalid } from "../../utils/isFormValid";
 import { findInputError } from "../../utils/inputError";
 import { useEffect } from "react";
 
-const InputImage = ({ id, placeholder, labelText, setSuccess }) => {
+const InputDefault = ({ id, type, placeholder, labelText, setSuccess }) => {
   const {
     register,
     formState: { errors },
@@ -29,13 +29,8 @@ const InputImage = ({ id, placeholder, labelText, setSuccess }) => {
   }, [isInvalid, setSuccess]);
 
   return (
-    <div className="flex flex-col w-64">
-      <label
-        className="border-2 border-blue-500 cursor-pointer rounded-md p-1 text-blue-500"
-        htmlFor={id}
-      >
-        {labelText}
-      </label>
+    <div className="flex flex-col w-56">
+      <label htmlFor={id}>{labelText}</label>
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
           <InputError
@@ -46,9 +41,8 @@ const InputImage = ({ id, placeholder, labelText, setSuccess }) => {
       </AnimatePresence>
       <input
         id={id}
-        className="hidden"
-        type="file"
-        encType="multipart/form-data"
+        className="border-2 rounded-md p-1"
+        type={type}
         placeholder={placeholder}
         name={id}
         {...register(id, validationRules)}
@@ -76,7 +70,7 @@ const framer_error = {
   transition: { duration: 0.2 },
 };
 
-InputImage.propTypes = {
+InputDefault.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -88,4 +82,4 @@ InputError.propTypes = {
   message: PropTypes.string,
 };
 
-export default InputImage;
+export default InputDefault;

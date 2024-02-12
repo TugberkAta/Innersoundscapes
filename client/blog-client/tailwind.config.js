@@ -8,6 +8,9 @@ export default {
         lato: ["Lato"],
         garamond: ["Garamond"],
       },
+      boxShadow: {
+        "inline-article": "inset 0px -58px 21px -12px rgba(0,0,0,0.66)",
+      },
     },
   },
   variants: {},

@@ -17,7 +17,7 @@ const NavBar = ({ userData }) => {
     <>
       <div className="h-16 bg-black flex items-center justify-between">
         <div className="flex items-center ">
-          <div className="text-white flex items-center ml-6 gap-4 text-pretty font-montserrat font-thin">
+          <div className="text-white flex items-center ml-6 gap-4 text-pretty font-montserrat font-extralight">
             <p>
               Inner<span className="text-purple-400">Soundscapes</span>
             </p>
