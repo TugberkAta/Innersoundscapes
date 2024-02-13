@@ -2,10 +2,9 @@ import { Route, Routes } from "react-router";
 import SignUpForm from "./components/authentication/SignUpForm";
 import DarkModeSwitch from "./components/utilities/DarkModeSwitch";
 import { useEffect, useState } from "react";
-import HomePage from "./components/homePage/HomePage";
 import LoginForm from "./components/authentication/LoginForm";
 import CreateArticle from "./components/articleCreation/CreateArticle";
-import MainLayout from "./components/genrePages/MainLayout";
+import MainLayout from "./components/utilities/MainLayout";
 
 function App() {
   const [displayMode, setDisplayMode] = useState(
@@ -75,14 +74,6 @@ function App() {
           }
         />
         <Route
-          path="/homepage"
-          element={
-            <>
-              <HomePage userData={userData}></HomePage>
-            </>
-          }
-        />
-        <Route
           path="/create-article"
           element={
             <>
@@ -117,6 +108,14 @@ function App() {
                 userData={userData}
               />
               ;
+            </>
+          }
+        />
+        <Route
+          path="/homepage"
+          element={
+            <>
+              <MainLayout articleAddress="all" userData={userData} />;
             </>
           }
         />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
-import GenreDisplay from "./GenreDisplay";
+import HubPageDisplay from "./HubPageDisplay";
 
 const MainLayout = ({ userData, articleAddress, categoryName }) => {
   const [displayDataArray, setDisplayDataArray] = useState("");
@@ -41,19 +41,19 @@ const MainLayout = ({ userData, articleAddress, categoryName }) => {
   return (
     <>
       <NavBar userData={userData}></NavBar>
-      <GenreDisplay
+      <HubPageDisplay
         loading={loading}
         displayDataArray={displayDataArray}
         categoryName={categoryName}
-      ></GenreDisplay>
+      ></HubPageDisplay>
     </>
   );
 };
 
 MainLayout.propTypes = {
   userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  articleAddress: PropTypes.string.isRequired,
-  categoryName: PropTypes.string.isRequired,
+  articleAddress: PropTypes.string,
+  categoryName: PropTypes.string,
 };
 
 export default MainLayout;
