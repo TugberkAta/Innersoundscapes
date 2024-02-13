@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.article-container:nth-child(1) > p {
+.big-article-container:nth-child(1) > p {
   bottom: 15px;
   left: 30px;
   font-size: larger;

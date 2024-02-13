@@ -5,6 +5,7 @@ import InputUserPredetermined from "./InputPredetermined";
 import TextAreaArticle from "./TextAreaArticle";
 import InputHeader from "./InputHeader";
 import InputDefault from "./InputDefault";
+import CheckboxInput from "./CheckboxInput";
 
 const CreateArticle = ({ displayMode, userData }) => {
   const methods = useForm();
@@ -37,7 +38,7 @@ const CreateArticle = ({ displayMode, userData }) => {
 
   return (
     <div
-      className={`w-full flex flex-col items-center justify-around bg-no-repeat bg-center bg-cover md:h-screen h-full ${
+      className={`w-full flex flex-col items-center justify-around bg-no-repeat bg-center bg-cover h-full ${
         displayMode
           ? "bg-[url('src/assets/stacked-waves-haikei-2.svg')]"
           : "bg-[url('src/assets/stacked-waves-haikei-3.svg')]"
@@ -45,7 +46,7 @@ const CreateArticle = ({ displayMode, userData }) => {
     >
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
-          <div className="flex flex-col justify-center gap-6 shadow-md px-24 py-12 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100">
+          <div className="flex flex-col justify-center gap-6 shadow-md px-24 py-6 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100 mt-16 mb-16">
             <h1 className="flex justify-center text-2xl font-semibold">
               CREATE ARTICLE
             </h1>
@@ -94,6 +95,43 @@ const CreateArticle = ({ displayMode, userData }) => {
                 labelText="Image Description"
                 setSuccess={setSuccess}
               ></InputDefault>
+              <p className="flex justify-center text-xl font-semibold">Tags</p>
+              <div className="grid grid-cols-2">
+                <CheckboxInput
+                  id="genreAlternative"
+                  placeholder=""
+                  labelText="Alternative"
+                  setSuccess={setSuccess}
+                ></CheckboxInput>
+                <CheckboxInput
+                  id="genrePsychedelia"
+                  type="checkbox"
+                  placeholder=""
+                  labelText="Psychedelia"
+                  setSuccess={setSuccess}
+                ></CheckboxInput>
+                <CheckboxInput
+                  id="genreProgressive"
+                  type="checkbox"
+                  placeholder=""
+                  labelText="Progressive"
+                  setSuccess={setSuccess}
+                ></CheckboxInput>
+                <CheckboxInput
+                  id="genrePunk"
+                  type="checkbox"
+                  placeholder=""
+                  labelText="Punk"
+                  setSuccess={setSuccess}
+                ></CheckboxInput>
+                <CheckboxInput
+                  id="genreTurkishScene"
+                  type="checkbox"
+                  placeholder=""
+                  labelText="Turkish Scene"
+                  setSuccess={setSuccess}
+                ></CheckboxInput>
+              </div>
               <div className="flex justify-center w-56">
                 {success && (
                   <p className="font-semibold text-green-500">

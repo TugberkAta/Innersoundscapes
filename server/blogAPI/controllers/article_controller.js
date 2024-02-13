@@ -2,7 +2,9 @@ const asyncHandler = require("express-async-handler");
 const Article = require("../models/article");
 const { body, validationResult } = require("express-validator");
 const uuid = require("uuid");
+const { DateTime } = require("luxon");
 
+//validating and registering the post to the database
 exports.register_article_post = [
   body("firstName", "First name field has to be filled")
     .isString()
@@ -17,8 +19,14 @@ exports.register_article_post = [
     .trim()
     .notEmpty(),
   body("imgUrl", "Img url must be filled").isString().trim().notEmpty(),
+  body("genreAlternative", "Error in tags field").optional().isBoolean(),
+  body("genreProgressive", "Error in tags field").optional().isBoolean(),
+  body("genrePsychedelia", "Error in tags field").optional().isBoolean(),
+  body("genrePunk", "Error in tags field").optional().isBoolean(),
+  body("genreTurkishScene", "Error in tags field").optional().isBoolean(),
 
   asyncHandler(async (req, res, next) => {
+    console.log("hey");
     console.log(validationResult(req));
     const errors = validationResult(req);
 
@@ -29,9 +37,16 @@ exports.register_article_post = [
     }
     try {
       const sanitizedImgAlt = req.body.imgAlt
+        .trim()
         .toLowerCase()
         .replace(/\s+/g, "-");
-
+      const tagObject = {
+        genreAlternative: req.body.genreAlternative,
+        genreProgressive: req.body.genreProgressive,
+        genrePsychedelia: req.body.genrePsychedelia,
+        genrePunk: req.body.genrePunk,
+        genreTurkishScene: req.body.genreTurkishScene,
+      };
       const article = new Article({
         uuid: uuid.v4(),
         firstName: req.body.firstName,
@@ -40,6 +55,8 @@ exports.register_article_post = [
         mainBody: req.body.mainBody,
         imgUrl: req.body.imgUrl,
         imgAlt: sanitizedImgAlt,
+        genreTag: tagObject,
+        date_of_article: DateTime.now(),
       });
       const result = await article.save();
       res.redirect("http://localhost:5173/create-article");
@@ -50,7 +67,58 @@ exports.register_article_post = [
   }),
 ];
 
+// get all the saved articles
 exports.all_articles_get = asyncHandler(async (req, res, next) => {
-  const allArticles = await Article.find().exec();
+  const allArticles = await Article.find().sort({ date_of_article: -1 }).exec();
   res.send(allArticles);
+});
+
+// get articles with the tag alternative
+exports.alternative_articles_get = asyncHandler(async (req, res, next) => {
+  const alternativeArticles = await Article.find({
+    "genreTag.genreAlternative": true,
+  })
+    .sort({ date_of_article: -1 })
+    .exec();
+  res.send(alternativeArticles);
+});
+
+// get articles with the tag psychedelia
+exports.psychedelia_articles_get = asyncHandler(async (req, res, next) => {
+  const psychedeliaArticles = await Article.find({
+    "genreTag.genrePsychedelia": true,
+  })
+    .sort({ date_of_article: -1 })
+    .exec();
+  res.send(psychedeliaArticles);
+});
+
+// get articles with the tag progressive
+exports.progressive_articles_get = asyncHandler(async (req, res, next) => {
+  const progressiveArticles = await Article.find({
+    "genreTag.genreProgressive": true,
+  })
+    .sort({ date_of_article: -1 })
+    .exec();
+  res.send(progressiveArticles);
+});
+
+// get articles with the tag punk
+exports.punk_articles_get = asyncHandler(async (req, res, next) => {
+  const punkArticles = await Article.find({
+    "genreTag.genrePunk": true,
+  })
+    .sort({ date_of_article: -1 })
+    .exec();
+  res.send(punkArticles);
+});
+
+// get articles with the tag turkish scene
+exports.turkish_scene_articles_get = asyncHandler(async (req, res, next) => {
+  const turkishSceneArticles = await Article.find({
+    "genreTag.genreTurkishScene": true,
+  })
+    .sort({ date_of_article: -1 })
+    .exec();
+  res.send(turkishSceneArticles);
 });

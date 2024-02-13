@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
-import HomePageDisplay from "./HomePageDisplay";
+import GenreDisplay from "./GenreDisplay";
 
-const HomePage = ({ userData }) => {
+const MainLayout = ({ userData, articleAddress, categoryName }) => {
   const [displayDataArray, setDisplayDataArray] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/article/all", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "http://localhost:3000/article/" + articleAddress,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -32,21 +35,25 @@ const HomePage = ({ userData }) => {
     if (!displayDataArray) {
       setLoading(true);
     } else setLoading(false);
+    console.log(displayDataArray);
   }, [displayDataArray]);
 
   return (
     <>
       <NavBar userData={userData}></NavBar>
-      <HomePageDisplay
+      <GenreDisplay
         loading={loading}
         displayDataArray={displayDataArray}
-      ></HomePageDisplay>
+        categoryName={categoryName}
+      ></GenreDisplay>
     </>
   );
 };
 
-HomePage.propTypes = {
+MainLayout.propTypes = {
   userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  articleAddress: PropTypes.string.isRequired,
+  categoryName: PropTypes.string.isRequired,
 };
 
-export default HomePage;
+export default MainLayout;

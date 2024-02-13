@@ -2,9 +2,10 @@ import { Route, Routes } from "react-router";
 import SignUpForm from "./components/authentication/SignUpForm";
 import DarkModeSwitch from "./components/utilities/DarkModeSwitch";
 import { useEffect, useState } from "react";
-import HomePage from "./components/HomePage/HomePage";
+import HomePage from "./components/homePage/HomePage";
 import LoginForm from "./components/authentication/LoginForm";
 import CreateArticle from "./components/articleCreation/CreateArticle";
+import MainLayout from "./components/genrePages/MainLayout";
 
 function App() {
   const [displayMode, setDisplayMode] = useState(
@@ -106,6 +107,72 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/alternative"
+          element={
+            <>
+              <MainLayout
+                articleAddress="alternative"
+                categoryName={"Alternative"}
+                userData={userData}
+              />
+              ;
+            </>
+          }
+        />
+        <Route
+          path="/psychedelia"
+          element={
+            <>
+              <MainLayout
+                articleAddress="psychedelia"
+                categoryName={"Psychedelia"}
+                userData={userData}
+              />
+              ;
+            </>
+          }
+        />
+        <Route
+          path="/progressive"
+          element={
+            <>
+              <MainLayout
+                articleAddress="progressive"
+                categoryName={"Progressive"}
+                userData={userData}
+              />
+              ;
+            </>
+          }
+        />
+        <Route
+          path="/punk"
+          element={
+            <>
+              <MainLayout
+                articleAddress="punk"
+                categoryName={"Punk"}
+                userData={userData}
+              />
+              ;
+            </>
+          }
+        />
+        <Route
+          path="/turkish-scene"
+          element={
+            <>
+              <MainLayout
+                articleAddress="turkish-scene"
+                categoryName={"Turkish Scene"}
+                userData={userData}
+              />
+              ;
+            </>
+          }
+        />
+        <Route path="/article/:id" element={<></>} />
       </Routes>
     </>
   );

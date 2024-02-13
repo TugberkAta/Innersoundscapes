@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
 import ArticleDisplay from "../utilities/ArticleDisplay";
 
-const HomePageDisplay = ({ loading, displayDataArray }) => {
+const GenreDisplay = ({ loading, displayDataArray, categoryName }) => {
   return (
     <>
+      <h1 className="font-mono text-2xl ml-16 mt-4 font-extrabold">
+        {categoryName}
+      </h1>
       {loading ? null : (
         <div className="flex flex-col w-screen items-center">
           <div className="grid grid-cols-4 gap-2 grid-rows-3 [&>*:first-child]:row-span-2 [&>*:first-child]:col-span-3 w-10/12 mt-4">
@@ -29,13 +32,11 @@ const HomePageDisplay = ({ loading, displayDataArray }) => {
   );
 };
 
-HomePageDisplay.propTypes = {
+GenreDisplay.propTypes = {
   userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  displayDataArray: PropTypes.PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.string,
-  ]),
+  displayDataArray: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
+  categoryName: PropTypes.string.isRequired,
 };
 
-export default HomePageDisplay;
+export default GenreDisplay;

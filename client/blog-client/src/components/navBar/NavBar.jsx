@@ -12,36 +12,35 @@ import {
 } from "react-icons/fa6";
 
 const NavBar = ({ userData }) => {
-  console.log(userData);
   return (
     <>
       <div className="h-16 bg-black flex items-center justify-between">
         <div className="flex items-center ">
           <div className="text-white flex items-center ml-6 gap-4 text-pretty font-montserrat font-extralight">
-            <p>
+            <a href="/homepage">
               Inner<span className="text-purple-400">Soundscapes</span>
-            </p>
+            </a>
             <GiSoundWaves color="white" size={32} />
           </div>
           <div className="flex gap-4 ml-11 font-mono text-sm font-bold">
             <NavBarLinks
-              linkAddress="http://localhost:5173/homepage"
+              linkAddress="http://localhost:5173/Alternative"
               linkName="Alternative"
             ></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/homepage"
+              linkAddress="http://localhost:5173/psychedelia"
               linkName="Psychedelia"
             ></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/homepage"
+              linkAddress="http://localhost:5173/progressive"
               linkName="Progressive"
             ></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/homepage"
+              linkAddress="http://localhost:5173/punk"
               linkName="Punk"
             ></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/homepage"
+              linkAddress="http://localhost:5173/turkish-scene"
               linkName="Turkish Scene"
             ></NavBarLinks>
           </div>
@@ -73,7 +72,7 @@ const NavBar = ({ userData }) => {
 };
 
 NavBar.propTypes = {
-  userData: PropTypes.array.isRequired,
+  userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default NavBar;

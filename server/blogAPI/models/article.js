@@ -10,6 +10,8 @@ const ArticleSchema = new Schema({
   mainBody: { type: String, required: true },
   imgUrl: { type: String, required: true },
   imgAlt: { type: String, required: true },
+  genreTag: { type: Object, required: true },
+  date_of_article: { type: Date, required: true },
 });
 
 module.exports = mongoose.model("Article", ArticleSchema);
