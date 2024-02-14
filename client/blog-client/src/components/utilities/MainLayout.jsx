@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
-import HubPageDisplay from "./HubPageDisplay";
 
-const MainLayout = ({ userData, articleAddress, categoryName }) => {
+const MainLayout = ({
+  userData,
+  articleCategory,
+  categoryName,
+  DisplayComponent,
+}) => {
   const [displayDataArray, setDisplayDataArray] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -11,7 +15,7 @@ const MainLayout = ({ userData, articleAddress, categoryName }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/article/" + articleAddress,
+          "http://localhost:3000/article/" + articleCategory,
           {
             method: "GET",
             headers: {
@@ -29,31 +33,31 @@ const MainLayout = ({ userData, articleAddress, categoryName }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [articleCategory]);
 
   useEffect(() => {
     if (!displayDataArray) {
       setLoading(true);
     } else setLoading(false);
-    console.log(displayDataArray);
   }, [displayDataArray]);
 
   return (
     <>
       <NavBar userData={userData}></NavBar>
-      <HubPageDisplay
+      <DisplayComponent
         loading={loading}
         displayDataArray={displayDataArray}
         categoryName={categoryName}
-      ></HubPageDisplay>
+      />
     </>
   );
 };
 
 MainLayout.propTypes = {
   userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  articleAddress: PropTypes.string,
+  articleCategory: PropTypes.string,
   categoryName: PropTypes.string,
+  DisplayComponent: PropTypes.elementType,
 };
 
 export default MainLayout;

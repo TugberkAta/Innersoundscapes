@@ -122,3 +122,21 @@ exports.turkish_scene_articles_get = asyncHandler(async (req, res, next) => {
     .exec();
   res.send(turkishSceneArticles);
 });
+
+// get a specific article that matches UUID
+exports.article_get = asyncHandler(async (req, res, next) => {
+  const article = await Article.find({ uuid: req.params.id }).exec();
+  res.send(article);
+});
+
+// get all the saved articles except the one with the matched UUID
+exports.all_articles_except_matched_get = asyncHandler(
+  async (req, res, next) => {
+    const allArticlesExceptMatched = await Article.find({
+      uuid: { $ne: req.params.id },
+    })
+      .sort({ date_of_article: -1 })
+      .exec();
+    res.send(allArticlesExceptMatched);
+  }
+);

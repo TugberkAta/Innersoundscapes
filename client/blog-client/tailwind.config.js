@@ -7,6 +7,7 @@ export default {
         montserrat: ["Montserrat"],
         lato: ["Lato"],
         garamond: ["Garamond"],
+        inter: ["Inter"],
       },
       boxShadow: {
         "inline-article": "inset 0px -58px 21px -12px rgba(0,0,0,0.66)",

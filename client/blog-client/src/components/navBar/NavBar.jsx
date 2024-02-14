@@ -22,7 +22,7 @@ const NavBar = ({ userData }) => {
             </a>
             <GiSoundWaves color="white" size={32} />
           </div>
-          <div className="flex gap-4 ml-11 font-mono text-sm font-bold">
+          <div className="hidden md:flex gap-4 ml-11 font-mono text-sm font-bold">
             <NavBarLinks
               linkAddress="http://localhost:5173/Alternative"
               linkName="Alternative"
@@ -45,18 +45,18 @@ const NavBar = ({ userData }) => {
             ></NavBarLinks>
           </div>
         </div>
-        <div className="flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-8">
           {userData ? (
             <a
               href="/create-article"
-              className="text-white  font-mono text-sm font-bold p-2 border-2 rounded-sm hover:scale-105 transition-all"
+              className="text-white font-mono text-sm font-bold p-2 border-2 rounded-sm hover:scale-105 transition-all"
             >
               Create an article
             </a>
           ) : (
             <></>
           )}
-          <div className="flex items-center gap-4">
+          <div className=" hidden xl:flex items-center gap-4">
             <NavBarSocial SocialLogo={FaInstagram}></NavBarSocial>
             <NavBarSocial SocialLogo={FaFacebook}></NavBarSocial>
             <NavBarSocial SocialLogo={FaXTwitter}></NavBarSocial>

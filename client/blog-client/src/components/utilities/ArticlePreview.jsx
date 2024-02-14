@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-const ArticleDisplay = ({ displayData, classNameSpecifier, key }) => {
+const ArticlePreview = ({ displayData, classNameSpecifier, key }) => {
   return (
     <a
-      href={"/article-" + displayData.uuid}
+      href={"/article/" + displayData.uuid}
       className={`${classNameSpecifier} relative font-mono  overflow-hidden`}
       key={key}
     >
@@ -13,17 +13,17 @@ const ArticleDisplay = ({ displayData, classNameSpecifier, key }) => {
         src={displayData.imgUrl}
         alt={displayData.imgAlt}
       />
-      <p className="headline-background absolute z-20 bottom-2 left-3 text-sm text-white">
+      <p className="headline-background absolute z-20 bottom-2 left-3 text-sm mr-2 text-white">
         {displayData.articleHeader}
       </p>
     </a>
   );
 };
 
-ArticleDisplay.propTypes = {
+ArticlePreview.propTypes = {
   displayData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   classNameSpecifier: PropTypes.string,
   key: PropTypes.string.isRequired,
 };
 
-export default ArticleDisplay;
+export default ArticlePreview;

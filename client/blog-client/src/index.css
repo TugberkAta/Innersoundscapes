@@ -8,6 +8,18 @@
   font-size: larger;
 }
 
+.big-article-container:nth-child(1) {
+  height: 28rem;
+}
+
 .headline-background {
   text-shadow: black 0px 0px 10px;
+}
+
+.medium-preview {
+  height: 14rem;
+}
+
+.big-article-img {
+  height: 30rem;
 }

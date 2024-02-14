@@ -95,8 +95,10 @@ const CreateArticle = ({ displayMode, userData }) => {
                 labelText="Image Description"
                 setSuccess={setSuccess}
               ></InputDefault>
-              <p className="flex justify-center text-xl font-semibold">Tags</p>
-              <div className="grid grid-cols-2">
+              <p className="flex justify-center text-xl font-medium border-b-2 w-9/12">
+                Tags
+              </p>
+              <div className="grid grid-cols-2 ">
                 <CheckboxInput
                   id="genreAlternative"
                   placeholder=""

@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import LoginForm from "./components/authentication/LoginForm";
 import CreateArticle from "./components/articleCreation/CreateArticle";
 import MainLayout from "./components/utilities/MainLayout";
+import HubPageDisplay from "./components/utilities/HubPageDisplay";
+import ArticlePage from "./components/articleDisplay/ArticlePage";
+import ArticleLayout from "./components/articleDisplay/articleLayout";
 
 function App() {
   const [displayMode, setDisplayMode] = useState(
@@ -47,6 +50,7 @@ function App() {
   }, [userData]);
 
   return (
+    //Routes for crud actions and log-in
     <>
       <Routes>
         <Route
@@ -98,35 +102,56 @@ function App() {
             </>
           }
         />
+        {/* Display routes such as homepage and article pages etc. */}
         <Route
-          path="/alternative"
+          path="/homepage"
           element={
             <>
               <MainLayout
-                articleAddress="alternative"
-                categoryName={"Alternative"}
+                articleCategory="all"
                 userData={userData}
+                DisplayComponent={HubPageDisplay}
               />
               ;
             </>
           }
         />
         <Route
-          path="/homepage"
+          path="/article/:id"
           element={
             <>
-              <MainLayout articleAddress="all" userData={userData} />;
+              <ArticlePage
+                userData={userData}
+                DisplayComponent={ArticleLayout}
+              />
+              ;
             </>
           }
         />
+        <Route
+          path="/alternative"
+          element={
+            <>
+              <MainLayout
+                articleCategory="alternative"
+                categoryName={"Alternative"}
+                userData={userData}
+                DisplayComponent={HubPageDisplay}
+              />
+              ;
+            </>
+          }
+        />
+
         <Route
           path="/psychedelia"
           element={
             <>
               <MainLayout
-                articleAddress="psychedelia"
+                articleCategory="psychedelia"
                 categoryName={"Psychedelia"}
                 userData={userData}
+                DisplayComponent={HubPageDisplay}
               />
               ;
             </>
@@ -137,9 +162,10 @@ function App() {
           element={
             <>
               <MainLayout
-                articleAddress="progressive"
+                articleCategory="progressive"
                 categoryName={"Progressive"}
                 userData={userData}
+                DisplayComponent={HubPageDisplay}
               />
               ;
             </>
@@ -150,9 +176,10 @@ function App() {
           element={
             <>
               <MainLayout
-                articleAddress="punk"
+                articleCategory="punk"
                 categoryName={"Punk"}
                 userData={userData}
+                DisplayComponent={HubPageDisplay}
               />
               ;
             </>
@@ -163,15 +190,15 @@ function App() {
           element={
             <>
               <MainLayout
-                articleAddress="turkish-scene"
+                articleCategory="turkish-scene"
                 categoryName={"Turkish Scene"}
                 userData={userData}
+                DisplayComponent={HubPageDisplay}
               />
               ;
             </>
           }
         />
-        <Route path="/article/:id" element={<></>} />
       </Routes>
     </>
   );

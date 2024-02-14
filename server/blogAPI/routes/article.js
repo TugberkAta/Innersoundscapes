@@ -16,4 +16,11 @@ router.get("/punk", article_controller.punk_articles_get);
 
 router.get("/turkish-scene", article_controller.turkish_scene_articles_get);
 
+router.get("/:id", article_controller.article_get);
+
+router.get(
+  "/:id/recommendation",
+  article_controller.all_articles_except_matched_get
+);
+
 module.exports = router;
