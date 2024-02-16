@@ -2,11 +2,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
-import { isFormInvalid } from "../../utils/isFormValid";
-import { findInputError } from "../../utils/inputError";
+import { isFormInvalid } from "../../../utils/isFormValid";
+import { findInputError } from "../../../utils/inputError";
 import { useEffect } from "react";
 
-const InputLogin = ({ id, type, placeholder, labelText, setSuccess }) => {
+const InputDefault = ({ id, type, placeholder, labelText, setSuccess }) => {
   const {
     register,
     formState: { errors },
@@ -70,7 +70,7 @@ const framer_error = {
   transition: { duration: 0.2 },
 };
 
-InputLogin.propTypes = {
+InputDefault.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -82,4 +82,4 @@ InputError.propTypes = {
   message: PropTypes.string,
 };
 
-export default InputLogin;
+export default InputDefault;

@@ -2,11 +2,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
-import { isFormInvalid } from "../../utils/isFormValid";
-import { findInputError } from "../../utils/inputError";
+import { isFormInvalid } from "../../../utils/isFormValid";
+import { findInputError } from "../../../utils/inputError";
 import { useEffect } from "react";
 
-const CheckboxInput = ({ id, placeholder, labelText, setSuccess }) => {
+const CheckboxInput = ({ id, labelText, setSuccess }) => {
   const {
     register,
     formState: { errors },
@@ -24,7 +24,7 @@ const CheckboxInput = ({ id, placeholder, labelText, setSuccess }) => {
   }, [isInvalid, setSuccess]);
 
   return (
-    <div className="flex items-center gap-4 w-42">
+    <div className="flex items-center justify-between mr-4 w-32">
       <label htmlFor={id}>{labelText}</label>
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
@@ -38,7 +38,6 @@ const CheckboxInput = ({ id, placeholder, labelText, setSuccess }) => {
         id={id}
         className="border-2 rounded-md p-1"
         type="checkbox"
-        placeholder={placeholder}
         name={id}
         {...register(id, validationRules)}
       />
@@ -67,7 +66,6 @@ const framer_error = {
 
 CheckboxInput.propTypes = {
   id: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   setSuccess: PropTypes.func.isRequired,
 };

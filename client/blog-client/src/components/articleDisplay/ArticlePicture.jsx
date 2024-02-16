@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import DeleteArticle from "../articleCreation/DeleteArticle";
+import EditArticleButton from "../articleCreation/EditArticleButton";
+EditArticleButton;
 
-const ArticlePicture = ({ displayData }) => {
+const ArticlePicture = ({ displayData, userData }) => {
   return (
     <div
       href={"/article/" + displayData.uuid}
@@ -12,12 +15,15 @@ const ArticlePicture = ({ displayData }) => {
         src={displayData.imgUrl}
         alt={displayData.imgAlt}
       />
+      <DeleteArticle userData={userData}></DeleteArticle>
+      <EditArticleButton userData={userData}></EditArticleButton>
     </div>
   );
 };
 
 ArticlePicture.propTypes = {
   displayData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default ArticlePicture;

@@ -11,6 +11,7 @@ const ArticleSchema = new Schema({
   imgUrl: { type: String, required: true },
   imgAlt: { type: String, required: true },
   genreTag: { type: Object, required: true },
+  paragraphArray: { type: Array, required: true },
   date_of_article: { type: Date, required: true },
 });
 

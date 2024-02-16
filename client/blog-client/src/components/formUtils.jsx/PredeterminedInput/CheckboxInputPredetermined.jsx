@@ -2,11 +2,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
-import { isFormInvalid } from "../../utils/isFormValid";
-import { findInputError } from "../../utils/inputError";
+import { isFormInvalid } from "../../../utils/isFormValid";
+import { findInputError } from "../../../utils/inputError";
 import { useEffect } from "react";
 
-const TextAreaArticle = ({ id, labelText, setSuccess }) => {
+const CheckboxInputPredetermined = ({
+  id,
+
+  labelText,
+  setSuccess,
+  predeterminedValue,
+}) => {
   const {
     register,
     formState: { errors },
@@ -15,12 +21,7 @@ const TextAreaArticle = ({ id, labelText, setSuccess }) => {
   const inputError = findInputError(errors, id);
   const isInvalid = isFormInvalid(inputError);
 
-  const validationRules = {
-    required: {
-      value: true,
-      message: "required",
-    },
-  };
+  const validationRules = {};
 
   useEffect(() => {
     if (isInvalid) {
@@ -29,7 +30,7 @@ const TextAreaArticle = ({ id, labelText, setSuccess }) => {
   }, [isInvalid, setSuccess]);
 
   return (
-    <div className="flex flex-col w-96">
+    <div className="flex items-center gap-4 w-42">
       <label htmlFor={id}>{labelText}</label>
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
@@ -39,10 +40,12 @@ const TextAreaArticle = ({ id, labelText, setSuccess }) => {
           />
         )}
       </AnimatePresence>
-      <textarea
+      <input
         id={id}
-        className="border-2 rounded-md p-1 min-h-64 max-h-96"
+        className="border-2 rounded-md p-1"
+        type="checkbox"
         name={id}
+        defaultChecked={predeterminedValue ? "checked" : ""}
         {...register(id, validationRules)}
       />
     </div>
@@ -68,14 +71,15 @@ const framer_error = {
   transition: { duration: 0.2 },
 };
 
-TextAreaArticle.propTypes = {
+CheckboxInputPredetermined.propTypes = {
   id: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   setSuccess: PropTypes.func.isRequired,
+  predeterminedValue: PropTypes.string.isRequired,
 };
 
 InputError.propTypes = {
   message: PropTypes.string,
 };
 
-export default TextAreaArticle;
+export default CheckboxInputPredetermined;

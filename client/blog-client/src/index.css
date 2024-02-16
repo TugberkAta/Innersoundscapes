@@ -23,3 +23,9 @@
 .big-article-img {
   height: 30rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .big-article-img {
+    height: 14rem;
+  }
+}

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, Navigate } from "react-router";
 import SignUpForm from "./components/authentication/SignUpForm";
 import DarkModeSwitch from "./components/utilities/DarkModeSwitch";
 import { useEffect, useState } from "react";
@@ -8,6 +8,8 @@ import MainLayout from "./components/utilities/MainLayout";
 import HubPageDisplay from "./components/utilities/HubPageDisplay";
 import ArticlePage from "./components/articleDisplay/ArticlePage";
 import ArticleLayout from "./components/articleDisplay/articleLayout";
+import EditArticle from "./components/articleCreation/EditArticle";
+import AdminRegister from "./components/authentication/AdminRegister";
 
 function App() {
   const [displayMode, setDisplayMode] = useState(
@@ -66,6 +68,21 @@ function App() {
           }
         />
         <Route
+          path="/register-admin/:id"
+          element={
+            <>
+              <DarkModeSwitch
+                setDisplayMode={setDisplayMode}
+                displayMode={displayMode}
+              ></DarkModeSwitch>
+              <AdminRegister
+                displayMode={displayMode}
+                userData={userData}
+              ></AdminRegister>
+            </>
+          }
+        />
+        <Route
           path="/log-in"
           element={
             <>
@@ -73,7 +90,10 @@ function App() {
                 setDisplayMode={setDisplayMode}
                 displayMode={displayMode}
               ></DarkModeSwitch>
-              <LoginForm displayMode={displayMode}></LoginForm>
+              <LoginForm
+                displayMode={displayMode}
+                userData={userData}
+              ></LoginForm>
             </>
           }
         />
@@ -102,6 +122,31 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/article/:id/edit"
+          element={
+            <>
+              <DarkModeSwitch
+                setDisplayMode={setDisplayMode}
+                displayMode={displayMode}
+              ></DarkModeSwitch>
+              {loading ? (
+                <div
+                  className={`w-full flex flex-col items-center justify-around bg-no-repeat bg-center bg-cover md:h-screen h-full ${
+                    displayMode
+                      ? "bg-[url('client/blog-client/src/assets/stacked-waves-haikei-2.svg')]"
+                      : "bg-[url('client/blog-client/src/assets/stacked-waves-haikei-3.svg')]"
+                  }`}
+                ></div>
+              ) : (
+                <EditArticle
+                  displayMode={displayMode}
+                  userData={userData}
+                ></EditArticle>
+              )}
+            </>
+          }
+        />
         {/* Display routes such as homepage and article pages etc. */}
         <Route
           path="/homepage"
@@ -116,6 +161,7 @@ function App() {
             </>
           }
         />
+        <Route path="/" element={<Navigate to="/homepage" />} />
         <Route
           path="/article/:id"
           element={
@@ -124,7 +170,7 @@ function App() {
                 userData={userData}
                 DisplayComponent={ArticleLayout}
               />
-              ;
+              -
             </>
           }
         />

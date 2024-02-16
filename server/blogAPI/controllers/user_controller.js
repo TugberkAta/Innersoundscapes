@@ -4,6 +4,7 @@ const passport = require("passport");
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 const uuid = require("uuid");
+require("dotenv").config();
 
 //Validate user form, hash and save it to mongodb
 exports.register_user_post = [
@@ -111,6 +112,50 @@ exports.sign_in_post = [
     } catch (err) {
       console.error("Error during authentication:", err);
       return next(err);
+    }
+  }),
+];
+
+// Updating the admin status
+exports.update_admin_patch = [
+  // Validating data
+  body("adminKey")
+    .isString()
+    .trim()
+    .notEmpty()
+    .custom(async (value, { req }) => {
+      if (value !== process.env.ADMIN_KEY) {
+        throw new Error("Admin key is not right");
+      }
+    }),
+
+  asyncHandler(async (req, res, next) => {
+    console.log(validationResult(req));
+    const errors = validationResult(req);
+
+    // Incase of errors refresh the page
+    if (!errors.isEmpty()) {
+      console.log("error while validating in the backend");
+      res.redirect("http://localhost:5173/article/register-admin:id");
+      return;
+    }
+
+    // Update admin status
+    try {
+      const updateFields = {
+        adminStatus: true,
+      };
+      const result = await User.findOneAndUpdate(
+        {
+          uuid: req.params.id,
+        },
+        updateFields,
+        { new: true }
+      ).exec();
+      res.redirect("http://localhost:5173/article/register-admin:id");
+    } catch (err) {
+      console.error("Error saving article:", err);
+      res.status(500).send("Server Error");
     }
   }),
 ];

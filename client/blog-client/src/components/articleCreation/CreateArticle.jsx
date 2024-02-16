@@ -1,18 +1,24 @@
 import { FormProvider, useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import InputUserPredetermined from "./InputPredetermined";
-import TextAreaArticle from "./TextAreaArticle";
-import InputHeader from "./InputHeader";
-import InputDefault from "./InputDefault";
-import CheckboxInput from "./CheckboxInput";
+import InputUserPredetermined from "../formUtils.jsx/PredeterminedInput/InputPredetermined";
+import TextAreaArticle from "../formUtils.jsx/Input/TextAreaArticle";
+import InputDefault from "../formUtils.jsx/Input/InputDefault";
+import CheckboxInput from "../formUtils.jsx/Input/CheckboxInput";
 
 const CreateArticle = ({ displayMode, userData }) => {
   const methods = useForm();
   const [success, setSuccess] = useState(false);
+  const [paragraphArray, setParagraphArray] = useState([]);
 
   const onSubmit = methods.handleSubmit(async (data) => {
+    paragraphArray.push(data.mainBody);
+    const formData = {
+      ...data,
+      paragraphArray: paragraphArray,
+    };
     try {
+      console.log(formData);
       const response = await fetch(
         "http://localhost:3000/article/create-article",
         {
@@ -20,12 +26,13 @@ const CreateArticle = ({ displayMode, userData }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(formData),
         }
       );
       if (response.ok) {
         setSuccess(true);
         methods.reset();
+        setParagraphArray([]);
       } else {
         setSuccess(false);
       }
@@ -40,13 +47,13 @@ const CreateArticle = ({ displayMode, userData }) => {
     <div
       className={`w-full flex flex-col items-center justify-around bg-no-repeat bg-center bg-cover h-full ${
         displayMode
-          ? "bg-[url('src/assets/stacked-waves-haikei-2.svg')]"
-          : "bg-[url('src/assets/stacked-waves-haikei-3.svg')]"
+          ? "bg-[url('/Users/tugberk/Documents/repos/Active-Node-Projects/Restful_Blog_Website/client/blog-client/src/assets/stacked-waves-haikei-2.svg')]"
+          : "bg-[url('/Users/tugberk/Documents/repos/Active-Node-Projects/Restful_Blog_Website/client/blog-client/src/assets/stacked-waves-haikei-3.svg')]"
       }`}
     >
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
-          <div className="flex flex-col justify-center gap-6 shadow-md px-24 py-6 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100 mt-16 mb-16">
+          <div className="flex flex-col justify-center gap-6 shadow-md px-24 py-6 rounded-md border-t-4 rounded-t-none border-cyan-400  bg-slate-100 mt-16 mb-16">
             <h1 className="flex justify-center text-2xl font-semibold">
               CREATE ARTICLE
             </h1>
@@ -57,7 +64,7 @@ const CreateArticle = ({ displayMode, userData }) => {
                 placeholder="First Name..."
                 labelText="First Name"
                 setSuccess={setSuccess}
-                userInfo={userData.firstName}
+                predeterminedValue={userData.firstName}
               />
               <InputUserPredetermined
                 id="lastName"
@@ -65,17 +72,19 @@ const CreateArticle = ({ displayMode, userData }) => {
                 placeholder="Last name..."
                 labelText="Last Name"
                 setSuccess={setSuccess}
-                userInfo={userData.lastName}
+                predeterminedValue={userData.lastName}
               />
             </div>
-            <InputHeader
+            <InputDefault
               id="articleHeader"
               type="input"
               placeholder="Header..."
               labelText="Header"
               setSuccess={setSuccess}
-            ></InputHeader>{" "}
+            ></InputDefault>{" "}
             <TextAreaArticle
+              setParagraphArray={setParagraphArray}
+              paragraphArray={paragraphArray}
               id="mainBody"
               labelText="Body"
               setSuccess={setSuccess}

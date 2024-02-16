@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
-import { isFormInvalid } from "../../utils/isFormValid";
-import { findInputError } from "../../utils/inputError";
+import { isFormInvalid } from "../../../utils/isFormValid";
+import { findInputError } from "../../../utils/inputError";
 import { useEffect } from "react";
 
 const InputPredetermined = ({
@@ -12,7 +12,8 @@ const InputPredetermined = ({
   placeholder,
   labelText,
   setSuccess,
-  userInfo,
+  predeterminedValue,
+  changeable,
 }) => {
   const {
     register,
@@ -48,11 +49,13 @@ const InputPredetermined = ({
       </AnimatePresence>
       <input
         id={id}
-        className="border-2 rounded-md p-1 pointer-events-none text-green-500"
+        className={`border-2 rounded-md p-1 ${
+          changeable ? "" : "pointer-events-none text-green-500"
+        }`}
         type={type}
         placeholder={placeholder}
         name={id}
-        value={userInfo}
+        defaultValue={predeterminedValue}
         {...register(id, validationRules)}
       />
     </div>
@@ -84,7 +87,8 @@ InputPredetermined.propTypes = {
   placeholder: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   setSuccess: PropTypes.func.isRequired,
-  userInfo: PropTypes.string.isRequired,
+  predeterminedValue: PropTypes.string.isRequired,
+  changeable: PropTypes.bool,
 };
 
 InputError.propTypes = {

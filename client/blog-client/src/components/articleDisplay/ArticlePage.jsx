@@ -82,6 +82,7 @@ const ArticlePage = ({ userData, categoryName, DisplayComponent }) => {
         displayData={displayData}
         categoryName={categoryName}
         recommendationDataArray={recommendationDataArray}
+        userData={userData}
       />
     </>
   );

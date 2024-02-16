@@ -46,7 +46,7 @@ const NavBar = ({ userData }) => {
           </div>
         </div>
         <div className="hidden xl:flex items-center gap-8">
-          {userData ? (
+          {userData.adminStatus ? (
             <a
               href="/create-article"
               className="text-white font-mono text-sm font-bold p-2 border-2 rounded-sm hover:scale-105 transition-all"
