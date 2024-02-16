@@ -1,6 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import InputSignUp from "./InputSignUp";
 import PropTypes from "prop-types";
+import { FaSignInAlt, FaHome } from "react-icons/fa";
 import { useState } from "react";
 
 const SignUpForm = ({ displayMode }) => {
@@ -91,6 +92,22 @@ const SignUpForm = ({ displayMode }) => {
             >
               Submit
             </button>
+            <div>
+              <a
+                href="/log-in"
+                className="flex items-center gap-2 text-blue-400 m-0 hover:text-blue-600"
+              >
+                <FaSignInAlt />
+                Login Page
+              </a>
+              <a
+                href="/homepage"
+                className="flex items-center gap-2 text-blue-400 m-0 hover:text-blue-600"
+              >
+                <FaHome />
+                Return to homepage{" "}
+              </a>
+            </div>
           </div>
         </form>
       </FormProvider>

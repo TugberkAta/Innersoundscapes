@@ -2,16 +2,16 @@ import { FormProvider, useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { GrUserAdmin } from "react-icons/gr";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaSignInAlt, FaHome } from "react-icons/fa";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";
 
 const LoginForm = ({ displayMode, userData }) => {
   const methods = useForm();
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(true);
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      await fetch("http://localhost:3000/users/log-in", {
+      const response = await fetch("http://localhost:3000/users/log-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -19,12 +19,20 @@ const LoginForm = ({ displayMode, userData }) => {
         body: JSON.stringify(data),
         credentials: "include",
       });
+
+      if (response.ok) {
+        setSuccess(true);
+        methods.reset();
+        window.location.href = "/homepage";
+      } else if (response.status === 400) {
+        setSuccess(false);
+      } else {
+        setSuccess(false);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setSuccess(false);
     }
-    setSuccess(true);
-    methods.reset();
-    window.location.href = "/homepage";
   });
 
   return (
@@ -38,6 +46,11 @@ const LoginForm = ({ displayMode, userData }) => {
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
           <div className="flex flex-col gap-6 shadow-md p-12 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100">
+            {!success && (
+              <p className="flex transition-all text-sm w-fit p-2 rounded-lg bg-red-500 text-white">
+                Username or password is wrong
+              </p>
+            )}
             <InputDefault
               id="username"
               type="text"
@@ -52,16 +65,8 @@ const LoginForm = ({ displayMode, userData }) => {
               labelText="Password"
               setSuccess={setSuccess}
             />
-            <div className="flex justify-center w-56">
-              {success && (
-                <p className="flex font-semibold text-green-500">
-                  Log in was successful
-                </p>
-              )}
-              {!success && null}
-            </div>
             <button
-              className=" p-2 bg-blue-500 text-white rounded-sm"
+              className="p-2 bg-blue-500 text-white rounded-sm"
               onClick={onSubmit}
             >
               Submit
@@ -73,6 +78,13 @@ const LoginForm = ({ displayMode, userData }) => {
               >
                 <FaSignInAlt />
                 If you have not registered yet{" "}
+              </a>
+              <a
+                href="/homepage"
+                className="flex items-center gap-2 text-blue-400 m-0 hover:text-blue-600"
+              >
+                <FaHome />
+                Return to homepage{" "}
               </a>
               {userData && (
                 <a

@@ -1,10 +1,10 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
-import { MdError } from "react-icons/md";
 import { isFormInvalid } from "../../utils/isFormValid";
 import { findInputError } from "../../utils/inputError";
 import { useEffect } from "react";
+import InputErrorHelper from "./InputError";
 
 const InputSignUp = ({
   id,
@@ -61,7 +61,7 @@ const InputSignUp = ({
       <label htmlFor={id}>{labelText}</label>
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
-          <InputError
+          <InputErrorHelper
             message={inputError.error.message}
             key={inputError.error.message}
           />
@@ -79,25 +79,6 @@ const InputSignUp = ({
   );
 };
 
-const InputError = ({ message }) => {
-  return (
-    <motion.p
-      className="flex items-center gap-1 px-2 max-w-56 font-semibold text-red-500 bg-red-100 rounded-md"
-      {...framer_error}
-    >
-      <MdError />
-      {message}
-    </motion.p>
-  );
-};
-
-const framer_error = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 10 },
-  transition: { duration: 0.2 },
-};
-
 InputSignUp.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -107,10 +88,6 @@ InputSignUp.propTypes = {
   password: PropTypes.string,
   setSuccess: PropTypes.func.isRequired,
   regEx: PropTypes.instanceOf(RegExp),
-};
-
-InputError.propTypes = {
-  message: PropTypes.string,
 };
 
 InputSignUp.defaultProps = {

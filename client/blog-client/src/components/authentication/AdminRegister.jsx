@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaSignInAlt, FaHome } from "react-icons/fa";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";
 const AdminRegister = ({ displayMode, userData }) => {
   const methods = useForm();
@@ -9,7 +9,7 @@ const AdminRegister = ({ displayMode, userData }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      await fetch(
+      const response = await fetch(
         `http://localhost:3000/users/register-admin/${userData.uuid}`,
         {
           method: "PATCH",
@@ -20,12 +20,18 @@ const AdminRegister = ({ displayMode, userData }) => {
           credentials: "include",
         }
       );
+      if (response.ok) {
+        setSuccess(true);
+        methods.reset();
+        window.location.href = "/homepage";
+      } else if (response.status === 400) {
+        setSuccess(false);
+      } else {
+        setSuccess(false);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
-    setSuccess(true);
-    methods.reset();
-    window.location.href = "/homepage";
   });
 
   return userData ? (
@@ -38,7 +44,12 @@ const AdminRegister = ({ displayMode, userData }) => {
     >
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
-          <div className="flex flex-col gap-6 shadow-md p-12 rounded-md border-t-4 rounded-t-none border-yellow-400 bg-slate-100">
+          <div className="flex flex-col items-center gap-6 shadow-md p-12 rounded-md border-t-4 rounded-t-none border-yellow-400 bg-slate-100">
+            {!success && (
+              <p className="flex transition-all text-sm w-fit p-2 rounded-lg bg-red-500 text-white">
+                Wrong admin key
+              </p>
+            )}
             <InputDefault
               id="adminKey"
               type="password"
@@ -56,7 +67,7 @@ const AdminRegister = ({ displayMode, userData }) => {
               {!success && null}
             </div>
             <button
-              className=" p-2 bg-blue-500 text-white rounded-sm"
+              className=" p-2 bg-blue-500 w-full text-white rounded-sm"
               onClick={onSubmit}
             >
               Submit
@@ -68,6 +79,13 @@ const AdminRegister = ({ displayMode, userData }) => {
               >
                 <FaSignInAlt />
                 If you have not registered yet{" "}
+              </a>
+              <a
+                href="/homepage"
+                className="flex items-center gap-2 text-blue-400 m-0 hover:text-blue-600"
+              >
+                <FaHome />
+                Return to homepage{" "}
               </a>
             </div>
           </div>

@@ -84,9 +84,10 @@ exports.sign_in_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      console.log("error");
+      res.status(400).send("Wrong username or password");
       return;
     }
+
     try {
       passport.authenticate("local", (err, user, info) => {
         if (err) {
@@ -95,7 +96,7 @@ exports.sign_in_post = [
         }
         if (!user) {
           console.log("Authentication failed:", info.message);
-          return res.send("");
+          return res.status(400);
         }
         // Log successful authentication
         console.log("User authenticated successfully:", user.username);
@@ -133,10 +134,8 @@ exports.update_admin_patch = [
     console.log(validationResult(req));
     const errors = validationResult(req);
 
-    // Incase of errors refresh the page
     if (!errors.isEmpty()) {
-      console.log("error while validating in the backend");
-      res.redirect("http://localhost:5173/article/register-admin:id");
+      res.status(400).send("Wrong admin key");
       return;
     }
 
