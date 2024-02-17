@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { FaSignInAlt, FaHome } from "react-icons/fa";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";
+import { RiErrorWarningLine } from "react-icons/ri";
+
 const AdminRegister = ({ displayMode, userData }) => {
   const methods = useForm();
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(true);
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
@@ -20,6 +22,7 @@ const AdminRegister = ({ displayMode, userData }) => {
           credentials: "include",
         }
       );
+      console.log(response.ok);
       if (response.ok) {
         setSuccess(true);
         methods.reset();
@@ -31,6 +34,7 @@ const AdminRegister = ({ displayMode, userData }) => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setSuccess(false);
     }
   });
 
@@ -44,9 +48,10 @@ const AdminRegister = ({ displayMode, userData }) => {
     >
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
-          <div className="flex flex-col items-center gap-6 shadow-md p-12 rounded-md border-t-4 rounded-t-none border-yellow-400 bg-slate-100">
+          <div className="flex flex-col gap-6 shadow-md p-12 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100">
             {!success && (
-              <p className="flex transition-all text-sm w-fit p-2 rounded-lg bg-red-500 text-white">
+              <p className="flex transition-all text-xs w-fit p-2 rounded-lg items-center gap-2 bg-red-500 text-white">
+                <RiErrorWarningLine />
                 Wrong admin key
               </p>
             )}
@@ -58,14 +63,7 @@ const AdminRegister = ({ displayMode, userData }) => {
               setSuccess={setSuccess}
             />
 
-            <div className="flex justify-center w-56">
-              {success && (
-                <p className="flex font-semibold text-green-500">
-                  Log in was successful
-                </p>
-              )}
-              {!success && null}
-            </div>
+            <div className="flex justify-center w-56">{!success && null}</div>
             <button
               className=" p-2 bg-blue-500 w-full text-white rounded-sm"
               onClick={onSubmit}

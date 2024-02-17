@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { GrUserAdmin } from "react-icons/gr";
 import { FaSignInAlt, FaHome } from "react-icons/fa";
+import { RiErrorWarningLine } from "react-icons/ri";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";
 
 const LoginForm = ({ displayMode, userData }) => {
@@ -47,7 +48,8 @@ const LoginForm = ({ displayMode, userData }) => {
         <form onSubmit={(e) => e.preventDefault()} noValidate>
           <div className="flex flex-col gap-6 shadow-md p-12 rounded-md border-t-4 rounded-t-none border-cyan-400 bg-slate-100">
             {!success && (
-              <p className="flex transition-all text-sm w-fit p-2 rounded-lg bg-red-500 text-white">
+              <p className="flex transition-all text-xs w-fit p-2 rounded-lg items-center gap-2 bg-red-500 text-white">
+                <RiErrorWarningLine />
                 Username or password is wrong
               </p>
             )}

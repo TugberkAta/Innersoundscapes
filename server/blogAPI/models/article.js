@@ -7,7 +7,6 @@ const ArticleSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   articleHeader: { type: String, required: true },
-  mainBody: { type: String, required: true },
   imgUrl: { type: String, required: true },
   imgAlt: { type: String, required: true },
   genreTag: { type: Object, required: true },

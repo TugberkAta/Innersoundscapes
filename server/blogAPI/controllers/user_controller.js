@@ -151,7 +151,7 @@ exports.update_admin_patch = [
         updateFields,
         { new: true }
       ).exec();
-      res.redirect("http://localhost:5173/article/register-admin:id");
+      res.status(200).send("Valid key");
     } catch (err) {
       console.error("Error saving article:", err);
       res.status(500).send("Server Error");

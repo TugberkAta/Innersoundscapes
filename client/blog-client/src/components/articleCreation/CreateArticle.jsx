@@ -12,7 +12,6 @@ const CreateArticle = ({ displayMode, userData }) => {
   const [paragraphArray, setParagraphArray] = useState([]);
 
   const onSubmit = methods.handleSubmit(async (data) => {
-    paragraphArray.push(data.mainBody);
     const formData = {
       ...data,
       paragraphArray: paragraphArray,

@@ -18,6 +18,7 @@ const TextAreaPredetermined = ({
 }) => {
   const {
     register,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -28,9 +29,14 @@ const TextAreaPredetermined = ({
   const isInvalid = isFormInvalid(inputError);
 
   const validationRules = {
-    required: {
-      value: true,
-      message: "required",
+    validate: {
+      notEmpty: (value) =>
+        console.log(value.trim()) ||
+        value.trim() === "" ||
+        "Don't forget to save your paragraph",
+      firstParagraphNotEmpty: () =>
+        paragraphArray.length > 0 ||
+        "You need to have at least one paragraph saved",
     },
   };
 
@@ -59,10 +65,6 @@ const TextAreaPredetermined = ({
   }, [currentDisplayPage, paragraphArray]);
 
   function onAdd() {
-    // Check if the paragraph has any text
-    if (paragraph.trim() === "") {
-      return 0;
-    }
     //if we are not on the current page update the paragraph
     if (currentDisplayPage < paragraphArray.length) {
       const updatedParagraphs = [...paragraphArray];
@@ -76,6 +78,8 @@ const TextAreaPredetermined = ({
     }
     // Update the displayed paragraph with an empty field
     setParagraph("");
+    // Update the react hook to inform the field is empty
+    setValue(id, "", { shouldValidate: true });
   }
 
   function onDelete() {

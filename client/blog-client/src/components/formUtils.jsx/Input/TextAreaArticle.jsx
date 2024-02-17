@@ -17,6 +17,7 @@ const TextAreaArticle = ({
 }) => {
   const {
     register,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -27,9 +28,14 @@ const TextAreaArticle = ({
   const isInvalid = isFormInvalid(inputError);
 
   const validationRules = {
-    required: {
-      value: true,
-      message: "required",
+    validate: {
+      notEmpty: (value) =>
+        console.log(value.trim()) ||
+        value.trim() === "" ||
+        "Don't forget to save your paragraph",
+      firstParagraphNotEmpty: () =>
+        paragraphArray.length > 0 ||
+        "You need to have at least one paragraph saved",
     },
   };
 
@@ -39,21 +45,7 @@ const TextAreaArticle = ({
     }
   }, [isInvalid, setSuccess]);
 
-  useEffect(() => {
-    console.log(paragraphArray);
-  }, [paragraphArray]);
-
-  useEffect(() => {
-    console.log(currentDisplayPage);
-    console.log(paragraphArray);
-    console.log(paragraphArray[currentDisplayPage]);
-  }, [currentDisplayPage, paragraphArray]);
-
   function onAdd() {
-    // Check if the paragraph has any text
-    if (paragraph.trim() === "") {
-      return 0;
-    }
     //if we are not on the current page update the paragraph
     if (currentDisplayPage < paragraphArray.length) {
       const updatedParagraphs = [...paragraphArray];
@@ -67,6 +59,7 @@ const TextAreaArticle = ({
     }
     // Update the displayed paragraph with an empty field
     setParagraph("");
+    setValue(id, "", { shouldValidate: true });
   }
 
   function onDelete() {
