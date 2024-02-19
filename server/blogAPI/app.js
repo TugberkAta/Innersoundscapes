@@ -54,14 +54,7 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-var whitelist = [
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  "http://localhost:3000",
-  "http://localhost:5173/homepage",
-  "http://localhost:3000/users/info",
-  "http://localhost:3000/users/current",
-];
+var whitelist = [process.env.CLIENT_URL];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || origin === undefined) {

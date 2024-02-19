@@ -12,7 +12,7 @@ const AdminRegister = ({ displayMode, userData }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/register-admin/${userData.uuid}`,
+        `https://restfulblogwebsite-production.up.railway.app/users/register-admin/${userData.uuid}`,
         {
           method: "PATCH",
           headers: {

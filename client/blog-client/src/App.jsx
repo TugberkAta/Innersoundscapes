@@ -7,7 +7,7 @@ import CreateArticle from "./components/articleCreation/CreateArticle";
 import MainLayout from "./components/utilities/MainLayout";
 import HubPageDisplay from "./components/utilities/HubPageDisplay";
 import ArticlePage from "./components/articleDisplay/ArticlePage";
-import ArticleLayout from "./components/articleDisplay/articleLayout";
+import ArticleLayout from "./components/articleDisplay/ArticleLayout";
 import EditArticle from "./components/articleCreation/EditArticle";
 import AdminRegister from "./components/authentication/AdminRegister";
 

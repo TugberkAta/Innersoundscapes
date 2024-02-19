@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
-import { isFormInvalid } from "../../../utils/isFormValid";
-import { findInputError } from "../../../utils/inputError";
+import { isFormInvalid } from "../../utils/isFormValid";
+import { findInputError } from "../../utils/inputError";
 import { useEffect } from "react";
 
 const InputPredetermined = ({

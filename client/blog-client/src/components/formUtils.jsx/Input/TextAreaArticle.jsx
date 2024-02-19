@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
-import { isFormInvalid } from "../../../utils/isFormValid";
-import { findInputError } from "../../../utils/inputError";
+import { isFormInvalid } from "../../utils/isFormValid";
+import { findInputError } from "../../utils/inputError";
 import { useEffect, useState } from "react";
 import { FaArrowRight, FaArrowLeft, FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -59,6 +59,7 @@ const TextAreaArticle = ({
     }
     // Update the displayed paragraph with an empty field
     setParagraph("");
+    // Update the react hook to inform the field is empty
     setValue(id, "", { shouldValidate: true });
   }
 

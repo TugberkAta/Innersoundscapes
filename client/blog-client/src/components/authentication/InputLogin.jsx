@@ -6,13 +6,7 @@ import { isFormInvalid } from "../../utils/isFormValid";
 import { findInputError } from "../../utils/inputError";
 import { useEffect } from "react";
 
-const CheckboxInputPredetermined = ({
-  id,
-
-  labelText,
-  setSuccess,
-  predeterminedValue,
-}) => {
+const InputLogin = ({ id, type, placeholder, labelText, setSuccess }) => {
   const {
     register,
     formState: { errors },
@@ -21,7 +15,12 @@ const CheckboxInputPredetermined = ({
   const inputError = findInputError(errors, id);
   const isInvalid = isFormInvalid(inputError);
 
-  const validationRules = {};
+  const validationRules = {
+    required: {
+      value: true,
+      message: "required",
+    },
+  };
 
   useEffect(() => {
     if (isInvalid) {
@@ -30,7 +29,7 @@ const CheckboxInputPredetermined = ({
   }, [isInvalid, setSuccess]);
 
   return (
-    <div className="flex items-center gap-4 w-42">
+    <div className="flex flex-col w-56">
       <label htmlFor={id}>{labelText}</label>
       <AnimatePresence mode="wait" initial={false}>
         {isInvalid && (
@@ -43,9 +42,9 @@ const CheckboxInputPredetermined = ({
       <input
         id={id}
         className="border-2 rounded-md p-1"
-        type="checkbox"
+        type={type}
+        placeholder={placeholder}
         name={id}
-        defaultChecked={predeterminedValue ? "checked" : ""}
         {...register(id, validationRules)}
       />
     </div>
@@ -71,15 +70,16 @@ const framer_error = {
   transition: { duration: 0.2 },
 };
 
-CheckboxInputPredetermined.propTypes = {
+InputLogin.propTypes = {
   id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   setSuccess: PropTypes.func.isRequired,
-  predeterminedValue: PropTypes.string.isRequired,
 };
 
 InputError.propTypes = {
   message: PropTypes.string,
 };
 
-export default CheckboxInputPredetermined;
+export default InputLogin;

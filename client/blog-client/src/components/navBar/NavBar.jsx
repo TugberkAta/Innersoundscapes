@@ -24,23 +24,20 @@ const NavBar = ({ userData }) => {
           </div>
           <div className="hidden md:flex gap-4 ml-11 font-mono text-sm font-bold">
             <NavBarLinks
-              linkAddress="http://localhost:5173/Alternative"
+              linkAddress="/Alternative"
               linkName="Alternative"
             ></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/psychedelia"
+              linkAddress="/psychedelia"
               linkName="Psychedelia"
             ></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/progressive"
+              linkAddress="/progressive"
               linkName="Progressive"
             ></NavBarLinks>
+            <NavBarLinks linkAddress="/punk" linkName="Punk"></NavBarLinks>
             <NavBarLinks
-              linkAddress="http://localhost:5173/punk"
-              linkName="Punk"
-            ></NavBarLinks>
-            <NavBarLinks
-              linkAddress="http://localhost:5173/turkish-scene"
+              linkAddress="/turkish-scene"
               linkName="Turkish Scene"
             ></NavBarLinks>
           </div>
@@ -62,7 +59,7 @@ const NavBar = ({ userData }) => {
             <NavBarSocial SocialLogo={FaXTwitter}></NavBarSocial>
             <NavBarSocial SocialLogo={FaYoutube}></NavBarSocial>
           </div>
-          <a href="http://localhost:5173/log-in">
+          <a href="/log-in">
             <BsWrenchAdjustableCircle color="white" className="mr-8 size-6 " />
           </a>
         </div>

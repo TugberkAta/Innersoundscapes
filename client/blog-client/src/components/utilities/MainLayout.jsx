@@ -15,7 +15,8 @@ const MainLayout = ({
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/article/" + articleCategory,
+          "https://restfulblogwebsite-production.up.railway.app/article/" +
+            articleCategory,
           {
             method: "GET",
             headers: {
