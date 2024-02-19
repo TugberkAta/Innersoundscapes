@@ -8,10 +8,6 @@
   font-size: larger;
 }
 
-.big-article-container:nth-child(1) {
-  height: 28rem;
-}
-
 .headline-background {
   text-shadow: black 0px 0px 10px;
 }
@@ -22,10 +18,4 @@
 
 .big-article-img {
   height: 30rem;
-}
-
-@media only screen and (max-width: 600px) {
-  .big-article-img {
-    height: 14rem;
-  }
 }
