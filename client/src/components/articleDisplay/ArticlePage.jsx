@@ -41,7 +41,7 @@ const ArticlePage = ({ userData, categoryName, DisplayComponent }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/article/${id}/recommendation`,
+          `https://www.innersoundscapes.com/api/article/${id}/recommendation`,
           {
             method: "GET",
             headers: {
