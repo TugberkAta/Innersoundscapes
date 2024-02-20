@@ -13,7 +13,7 @@ const LoginForm = ({ displayMode, userData }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
       const response = await fetch(
-        "https://www.innersoundscapes.com/users/log-in",
+        "https://www.innersoundscapes.com/api/users/log-in",
         {
           method: "POST",
           headers: {
