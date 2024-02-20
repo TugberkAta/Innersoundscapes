@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import ArticlePicture from "./ArticlePicture";
 import ArticlePreview from "../utilities/ArticlePreview";
+import React from "react";
 import "ldrs/mirage";
 
 const ArticleLayout = ({

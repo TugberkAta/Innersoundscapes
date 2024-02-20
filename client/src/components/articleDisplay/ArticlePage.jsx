@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
-import { set } from "react-hook-form";
+import React from "react";
 
 const ArticlePage = ({ userData, categoryName, DisplayComponent }) => {
   const [displayData, setDisplayData] = useState();

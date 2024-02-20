@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { GiSoundWaves } from "react-icons/gi";
 import { BsWrenchAdjustableCircle } from "react-icons/bs";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import React from "react";
 import {
   FaXTwitter,
   FaYoutube,
@@ -116,6 +117,8 @@ const NavBar = ({ userData, toggleHamburger, setToggleHamburger }) => {
 
 NavBar.propTypes = {
   userData: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  toggleHamburger: PropTypes.bool.isRequired,
+  setToggleHamburger: PropTypes.func.isRequired,
 };
 
 export default NavBar;

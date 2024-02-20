@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, React } from "react";
 import { GrUserAdmin } from "react-icons/gr";
 import { FaSignInAlt, FaHome } from "react-icons/fa";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -12,7 +12,7 @@ const LoginForm = ({ displayMode, userData }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      const response = await fetch(HOST_ADDRESS + "/users/log-in", {
+      const response = await fetch("http://localhost:3000/users/log-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

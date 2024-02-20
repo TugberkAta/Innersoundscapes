@@ -10,6 +10,7 @@ import ArticlePage from "./components/articleDisplay/ArticlePage";
 import ArticleLayout from "./components/articleDisplay/ArticleLayout";
 import EditArticle from "./components/articleCreation/EditArticle";
 import AdminRegister from "./components/authentication/AdminRegister";
+import React from "react";
 
 function App() {
   const [displayMode, setDisplayMode] = useState(

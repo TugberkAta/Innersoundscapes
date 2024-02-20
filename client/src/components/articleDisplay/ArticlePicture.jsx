@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import DeleteArticle from "../articleCreation/DeleteArticle";
 import EditArticleButton from "../articleCreation/EditArticleButton";
+import React from "react";
 
 const ArticlePicture = ({ displayData, userData }) => {
   return (

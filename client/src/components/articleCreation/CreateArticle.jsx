@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import React, { useState } from "react";
 import InputUserPredetermined from "../formUtils.jsx/PredeterminedInput/InputPredetermined";
 import TextAreaArticle from "../formUtils.jsx/Input/TextAreaArticle";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";

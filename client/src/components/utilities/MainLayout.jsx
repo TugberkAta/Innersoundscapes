@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
+import React from "react";
 
 const MainLayout = ({
   userData,

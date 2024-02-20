@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import ArticlePreview from "./ArticlePreview";
+import React from "react";
 import "ldrs/mirage";
 
 const HubPageDisplay = ({ loading, displayDataArray, categoryName }) => {
