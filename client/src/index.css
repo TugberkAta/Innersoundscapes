@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.big-article-container:nth-child(1) > p {
+  bottom: 15px;
+  left: 30px;
+  font-size: larger;
+}
+
+.headline-background {
+  text-shadow: black 0px 0px 10px;
+}
+
+.medium-preview {
+  height: 14rem;
+}
