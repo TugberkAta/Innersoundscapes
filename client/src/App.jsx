@@ -28,7 +28,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "hhttps://www.innersoundscapes.com/api/users/current",
+          "https://www.innersoundscapes.com/api/users/current",
           {
             method: "GET",
             headers: {
