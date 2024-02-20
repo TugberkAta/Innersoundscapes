@@ -19,7 +19,7 @@ const CreateArticle = ({ displayMode, userData }) => {
     try {
       console.log(formData);
       const response = await fetch(
-        "http://localhost:3000/article/create-article",
+        "https://www.innersoundscapes.com/api/article/create-article",
         {
           method: "POST",
           headers: {

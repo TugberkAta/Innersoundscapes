@@ -12,14 +12,17 @@ const LoginForm = ({ displayMode, userData }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/users/log-in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://www.innersoundscapes.com/users/log-in",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         setSuccess(true);

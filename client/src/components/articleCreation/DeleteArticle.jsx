@@ -18,7 +18,7 @@ const DeleteArticle = ({ userData }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/article/${id}/delete`,
+        `https://www.innersoundscapes.com/api/article/${id}/delete`,
         {
           method: "DELETE",
         }

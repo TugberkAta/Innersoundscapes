@@ -16,12 +16,15 @@ const EditArticle = ({ displayMode, userData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/article/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `https://www.innersoundscapes.com/api/article/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -42,13 +45,16 @@ const EditArticle = ({ displayMode, userData }) => {
       paragraphArray: paragraphArray,
     };
     try {
-      const response = await fetch(`http://localhost:3000/article/${id}/edit`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `https://www.innersoundscapes.com/api/article/${id}/edit`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok) {
         setSuccess(true);
         methods.reset();

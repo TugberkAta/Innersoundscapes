@@ -17,7 +17,7 @@ const MainLayout = ({
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/article/" + articleCategory,
+          "https://www.innersoundscapes.com/api/article/" + articleCategory,
           {
             method: "GET",
             headers: {
