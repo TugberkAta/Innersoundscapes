@@ -6,7 +6,7 @@ const NavBarLinks = ({ linkName, linkAddress }) => {
     <>
       <a
         href={linkAddress}
-        className="text-white pr-6 p-5 md:pr-2 w-full md:w-auto hover:text-purple-400 hover:bg-white transition"
+        className="text-white pr-6 p-5 md:p-2 w-full md:w-auto hover:text-purple-400 hover:bg-white transition"
       >
         {linkName}
       </a>
