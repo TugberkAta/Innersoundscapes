@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const DarkModeSwitch = ({ setDisplayMode, displayMode }) => {
+const DarkModeSwitch = ({ setDisplayMode, displayMode, styleChoices }) => {
   return (
     <button
-      className="absolute right-3 top-3"
+      className={styleChoices}
       type="button"
       onClick={() => setDisplayMode(!displayMode)}
     >
@@ -36,6 +36,7 @@ const DarkModeSwitch = ({ setDisplayMode, displayMode }) => {
 DarkModeSwitch.propTypes = {
   setDisplayMode: PropTypes.func.isRequired,
   displayMode: PropTypes.bool.isRequired,
+  styleChoices: PropTypes.string,
 };
 
 export default DarkModeSwitch;

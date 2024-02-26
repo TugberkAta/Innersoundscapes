@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { MdError } from "react-icons/md";
 import { isFormInvalid } from "../../utils/isFormValid";
 import { findInputError } from "../../utils/inputError";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaArrowLeft, FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 

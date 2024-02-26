@@ -66,6 +66,7 @@ function App() {
               <DarkModeSwitch
                 setDisplayMode={setDisplayMode}
                 displayMode={displayMode}
+                styleChoices={"absolute top-3 right-3"}
               ></DarkModeSwitch>
               <SignUpForm displayMode={displayMode}></SignUpForm>
             </>
@@ -78,6 +79,7 @@ function App() {
               <DarkModeSwitch
                 setDisplayMode={setDisplayMode}
                 displayMode={displayMode}
+                styleChoices={"absolute top-3 right-3"}
               ></DarkModeSwitch>
               <AdminRegister
                 displayMode={displayMode}
@@ -93,6 +95,7 @@ function App() {
               <DarkModeSwitch
                 setDisplayMode={setDisplayMode}
                 displayMode={displayMode}
+                styleChoices={"absolute top-3 right-3"}
               ></DarkModeSwitch>
               <LoginForm
                 displayMode={displayMode}
@@ -108,6 +111,7 @@ function App() {
               <DarkModeSwitch
                 setDisplayMode={setDisplayMode}
                 displayMode={displayMode}
+                styleChoices={"absolute top-3 right-3"}
               ></DarkModeSwitch>
               {loading ? (
                 <div
@@ -133,6 +137,7 @@ function App() {
               <DarkModeSwitch
                 setDisplayMode={setDisplayMode}
                 displayMode={displayMode}
+                styleChoices={"absolute top-3 right-3"}
               ></DarkModeSwitch>
               {loading ? (
                 <div
@@ -160,6 +165,8 @@ function App() {
                 articleCategory="all"
                 userData={userData}
                 DisplayComponent={HubPageDisplay}
+                displayMode={displayMode}
+                setDisplayMode={setDisplayMode}
               />
             </>
           }
@@ -185,6 +192,7 @@ function App() {
                 categoryName={"Alternative"}
                 userData={userData}
                 DisplayComponent={HubPageDisplay}
+                displayMode={displayMode}
               />
             </>
           }

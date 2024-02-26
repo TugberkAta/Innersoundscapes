@@ -3,6 +3,7 @@ import ArticlePicture from "./ArticlePicture";
 import ArticlePreview from "../utilities/ArticlePreview";
 import React from "react";
 import "ldrs/mirage";
+import { motion, useScroll } from "framer-motion";
 
 const ArticleLayout = ({
   displayData,
@@ -12,13 +13,22 @@ const ArticleLayout = ({
   userData,
 }) => {
   const date = displayData ? new Date(displayData.date_of_article) : null;
+  const { scrollYProgress } = useScroll();
+
   return displayData ? (
     <>
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mb-8 mt-6">
         <div className="flex flex-col lg:flex-row gap-16 w-10/12 items-start">
           <div className="flex flex-col lg:w-9/12">
             {loading || !displayData ? null : (
               <>
+                <motion.div
+                  className="bg-gray-700  w-full top-0 h-1 left-0 z-40 fixed lg:hidden"
+                  style={{
+                    transformOrigin: "left",
+                    scaleX: scrollYProgress,
+                  }}
+                />
                 <ArticlePicture userData={userData} displayData={displayData} />
                 <h1 className="text-2xl font-bold mt-2 mb-4 ">
                   {displayData.articleHeader}
