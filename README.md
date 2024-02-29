@@ -4,11 +4,11 @@ InnerSoundscapes is a music magazine website built with Express.js, MongoDB and 
 
 [www.innersoundscapes.com](https://www.innersoundscapes.com)
 
-<h3>Article Page</h3>
-<img src="https://i.imgur.com/nVpDLPu.png">
-
 <h3>Homepage</h3>
 <img src="https://i.imgur.com/rsFn1nO.png">
+
+<h3>Article Page</h3>
+<img src="https://i.imgur.com/vQMWyuS.png">
 
 <h3>Sign Up Page</h3>
 <img src="https://i.imgur.com/B6t8v3Z.png">
