@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
 import React from "react";
+import serverUrl from "../../helper/clientUrl";
 
 const MainLayout = ({
   userData,
@@ -17,10 +18,11 @@ const MainLayout = ({
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/article/" + articleCategory,
+          serverUrl + "/article/" + articleCategory,
           {
             method: "GET",
             headers: {
+              "Referrer-Policy": "no-referrer",
               "Content-Type": "application/json",
             },
           }

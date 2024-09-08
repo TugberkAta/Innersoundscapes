@@ -3,6 +3,7 @@ import InputSignUp from "./InputSignUp";
 import PropTypes from "prop-types";
 import { FaSignInAlt, FaHome } from "react-icons/fa";
 import { useState, React } from "react";
+import serverUrl from "../../helper/clientUrl";
 
 const SignUpForm = ({ displayMode }) => {
   const methods = useForm();
@@ -10,7 +11,7 @@ const SignUpForm = ({ displayMode }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/users/register", {
+      const response = await fetch(serverUrl + "/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

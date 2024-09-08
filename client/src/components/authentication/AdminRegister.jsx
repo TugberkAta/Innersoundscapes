@@ -4,6 +4,7 @@ import { useState, React } from "react";
 import { FaSignInAlt, FaHome } from "react-icons/fa";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";
 import { RiErrorWarningLine } from "react-icons/ri";
+import serverUrl from "../../helper/clientUrl";
 
 const AdminRegister = ({ displayMode, userData }) => {
   const methods = useForm();
@@ -12,7 +13,7 @@ const AdminRegister = ({ displayMode, userData }) => {
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/register-admin/${userData.uuid}`,
+        serverUrl + `/users/register-admin/${userData.uuid}`,
         {
           method: "PATCH",
           headers: {

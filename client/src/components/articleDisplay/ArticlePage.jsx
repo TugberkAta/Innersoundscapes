@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
 import PropTypes from "prop-types";
 import React from "react";
+import serverUrl from "../../helper/clientUrl";
 
 const ArticlePage = ({ userData, categoryName, DisplayComponent }) => {
   const [displayData, setDisplayData] = useState();
@@ -15,7 +16,7 @@ const ArticlePage = ({ userData, categoryName, DisplayComponent }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/article/${id}`, {
+        const response = await fetch(serverUrl + `/article/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +39,7 @@ const ArticlePage = ({ userData, categoryName, DisplayComponent }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/article/${id}/recommendation`,
+          serverUrl + `/article/${id}/recommendation`,
           {
             method: "GET",
             headers: {

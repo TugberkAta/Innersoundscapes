@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { MdDeleteForever } from "react-icons/md";
+import serverUrl from "../../helper/clientUrl";
 
 const DeleteArticle = ({ userData }) => {
   const [pressed, setPressed] = useState(false);
@@ -18,7 +19,7 @@ const DeleteArticle = ({ userData }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/article/${id}/delete`,
+        serverUrl + `/article/${id}/delete`,
         {
           method: "DELETE",
         }

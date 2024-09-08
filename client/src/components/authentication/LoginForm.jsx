@@ -5,6 +5,7 @@ import { GrUserAdmin } from "react-icons/gr";
 import { FaSignInAlt, FaHome } from "react-icons/fa";
 import { RiErrorWarningLine } from "react-icons/ri";
 import InputDefault from "../formUtils.jsx/Input/InputDefault";
+import serverUrl from "../../helper/clientUrl";
 
 const LoginForm = ({ displayMode, userData }) => {
   const methods = useForm();
@@ -12,7 +13,7 @@ const LoginForm = ({ displayMode, userData }) => {
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/users/log-in", {
+      const response = await fetch(serverUrl + "/users/log-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

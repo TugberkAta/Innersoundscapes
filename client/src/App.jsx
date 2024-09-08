@@ -11,6 +11,7 @@ import ArticleLayout from "./components/articleDisplay/ArticleLayout";
 import EditArticle from "./components/articleCreation/EditArticle";
 import AdminRegister from "./components/authentication/AdminRegister";
 import React from "react";
+import serverUrl from "./helper/clientUrl";
 
 function App() {
   const [displayMode, setDisplayMode] = useState(
@@ -27,7 +28,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/users/current", {
+        const response = await fetch(serverUrl + "/users/current", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

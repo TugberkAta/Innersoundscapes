@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import InputPredetermined from "../formUtils.jsx/PredeterminedInput/InputPredetermined";
 import TextAreaPredetermined from "../formUtils.jsx/PredeterminedInput/TextAreaPredetermined";
 import CheckboxInputPredetermined from "../formUtils.jsx/PredeterminedInput/CheckboxInputPredetermined";
+import serverUrl from "../../helper/clientUrl";
 
 const EditArticle = ({ displayMode, userData }) => {
   const [displayData, setDisplayData] = useState();
@@ -16,7 +17,7 @@ const EditArticle = ({ displayMode, userData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/article/${id}`, {
+        const response = await fetch(serverUrl + `/article/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -42,7 +43,7 @@ const EditArticle = ({ displayMode, userData }) => {
       paragraphArray: paragraphArray,
     };
     try {
-      const response = await fetch(`http://localhost:3000/article/${id}/edit`, {
+      const response = await fetch(serverUrl + `/article/${id}/edit`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
